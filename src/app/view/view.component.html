@@ -1,0 +1,61 @@
+
+<div id="viewDiv" >
+
+  <button routerLink="/add" class="btn btn-primary"><i class=" fa fa-address-card"> </i> Add</button>
+  <input style="margin-left: 10px;margin-top: 10px" type="text" placeholder="search by date..." [(ngModel)]="searchValue">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Service charges</th>
+      <th scope="col">Printing charges</th>
+      <th scope="col">Total Amount</th>
+      <th scope="col">Date</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of list | filter :'date' : searchValue : 'equal'  ">
+      <td>{{item.invoicId }}</td>
+      <td>{{item.s_charges}}</td>
+      <td>{{item.p_charges}}</td>
+      <td>{{item.p_charges + item.s_charges}}</td>
+      <td>{{item.date }}</td>
+      <td><button (click)="edit(item)" class="btn btn-primary"> <i class=" fa fa-edit"> </i>Edit</button></td>
+      <td><button (click)="removeItem(item)" class="btn btn-danger"> <i class=" fa fa-trash"> </i>Delete</button></td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<div id="editComp">
+  <app-edit *ngIf="!showEdit" [itemdata] = "editdata" (updateData)="fetchUpdate($event)"  ></app-edit>
+</div>
+
+
+<div class="modal slide-up modal-backdrop"  id="deleteModal"  role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm positionClass" >
+    <div class="modal-content-wrapper deleteTenant" >
+      <div class="modal-content deleteGlobalContent" >
+
+        <div class="modal-body">
+          <p class="no-margin">Sure you want to delete ?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger btn-cons  pull-left inline "
+                  (click)="deleteRecord()" data-dismiss="modal" ><i class=" fa fa-trash"> </i>
+            Delete
+          </button>
+          <button type="button" class="btn btn-primary btn-cons no-margin pull-left inline "
+                  data-dismiss="modal" (click)="closeModel()" >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
