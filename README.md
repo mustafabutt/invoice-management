@@ -1,5 +1,5 @@
 # invoice-management
-<h1>Angular 7 used</h1>
-<b>Clone this Repo</b>
-<b>Run "npm install"</b>
+<h1>Angular 7 used</h1><br>
+<b>Clone this Repo</b><br>
+<b>Run "npm install"</b><br>
   <b>Run "ng serve --open"</b>
